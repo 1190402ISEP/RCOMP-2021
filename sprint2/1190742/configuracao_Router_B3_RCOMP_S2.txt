@@ -1,0 +1,112 @@
+!
+version 15.1
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+no service password-encryption
+!
+hostname Router
+!
+!
+!
+!
+!
+!
+!
+!
+no ip cef
+no ipv6 cef
+!
+!
+!
+!
+license udi pid CISCO2811/K9 sn FTX1017H40T-
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+spanning-tree mode pvst
+!
+!
+!
+!
+!
+!
+interface FastEthernet0/0
+ no ip address
+ duplex auto
+ speed auto
+!
+interface FastEthernet0/0.300
+ encapsulation dot1Q 300
+ ip address 10.125.183.190 255.255.255.192
+!
+interface FastEthernet0/0.301
+ encapsulation dot1Q 301
+ ip address 10.125.182.190 255.255.255.192
+!
+interface FastEthernet0/0.302
+ encapsulation dot1Q 302
+ ip address 10.125.176.254 255.255.255.0
+!
+interface FastEthernet0/0.303
+ encapsulation dot1Q 303
+ ip address 10.125.183.254 255.255.255.192
+!
+interface FastEthernet0/0.304
+ encapsulation dot1Q 304
+ ip address 10.125.181.126 255.255.255.192
+!
+interface FastEthernet0/1
+ no ip address
+ duplex auto
+ speed auto
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+ip classless
+ip route 0.0.0.0 0.0.0.0 10.125.179.1 
+ip route 10.125.181.0 255.255.255.192 10.125.179.2 
+ip route 10.125.180.128 255.255.255.128 10.125.179.2 
+ip route 10.125.185.32 255.255.255.240 10.125.179.2 
+ip route 10.125.184.128 255.255.255.192 10.125.179.2 
+ip route 10.125.179.128 255.255.255.128 10.125.179.2 
+ip route 10.125.183.64 255.255.255.192 10.125.179.4 
+ip route 10.125.182.0 255.255.255.192 10.125.179.4 
+ip route 10.125.177.0 255.255.255.0 10.125.179.4 
+ip route 10.125.184.192 255.255.255.224 10.125.179.4 
+ip route 10.125.181.128 255.255.255.192 10.125.179.4 
+ip route 10.125.184.0 255.255.255.192 10.125.179.5 
+ip route 10.125.182.64 255.255.255.192 10.125.179.5 
+ip route 10.125.178.0 255.255.255.0 10.125.179.5 
+ip route 10.125.184.64 255.255.255.192 10.125.179.5 
+ip route 10.125.181.192 255.255.255.192 10.125.179.5 
+!
+ip flow-export version 9
+!
+!
+!
+!
+!
+!
+!
+!
+line con 0
+!
+line aux 0
+!
+line vty 0 4
+ login
+!
+!
+!
+end
+

@@ -1,0 +1,122 @@
+!
+version 15.1
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+no service password-encryption
+!
+hostname Router
+!
+!
+!
+!
+!
+!
+!
+!
+no ip cef
+no ipv6 cef
+!
+!
+!
+!
+license udi pid CISCO2811/K9 sn FTX1017CY47-
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+spanning-tree mode pvst
+!
+!
+!
+!
+!
+!
+interface FastEthernet0/0
+ ip address 10.125.179.1 255.255.255.128
+ duplex auto
+ speed auto
+!
+interface FastEthernet0/0.290
+ encapsulation dot1Q 290
+ ip address 10.125.182.254 255.255.255.192
+!
+interface FastEthernet0/0.291
+ encapsulation dot1Q 291
+ ip address 10.125.183.62 255.255.255.192
+!
+interface FastEthernet0/0.292
+ encapsulation dot1Q 292
+ ip address 10.125.180.126 255.255.255.128
+!
+interface FastEthernet0/0.293
+ encapsulation dot1Q 293
+ ip address 10.125.185.30 255.255.255.224
+!
+interface FastEthernet0/0.294
+ encapsulation dot1Q 294
+ ip address 10.125.184.254 255.255.255.224
+!
+interface FastEthernet0/0.315
+ no ip address
+!
+interface FastEthernet0/1
+ ip address 120.57.101.234 255.255.255.252
+ duplex auto
+ speed auto
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+router rip
+!
+ip classless
+ip route 0.0.0.0 0.0.0.0 120.57.101.233 
+ip route 10.125.181.0 255.255.255.192 10.125.179.2 
+ip route 10.125.180.128 255.255.255.128 10.125.179.2 
+ip route 10.125.185.32 255.255.255.240 10.125.179.2 
+ip route 10.125.184.128 255.255.255.192 10.125.179.2 
+ip route 10.125.179.128 255.255.255.128 10.125.179.2 
+ip route 10.125.183.128 255.255.255.192 10.125.179.3 
+ip route 10.125.182.128 255.255.255.192 10.125.179.3 
+ip route 10.125.176.0 255.255.255.0 10.125.179.3 
+ip route 10.125.183.192 255.255.255.192 10.125.179.3 
+ip route 10.125.181.64 255.255.255.192 10.125.179.3 
+ip route 10.125.183.64 255.255.255.192 10.125.179.4 
+ip route 10.125.182.0 255.255.255.192 10.125.179.4 
+ip route 10.125.177.0 255.255.255.0 10.125.179.4 
+ip route 10.125.184.192 255.255.255.224 10.125.179.4 
+ip route 10.125.181.128 255.255.255.192 10.125.179.4 
+ip route 10.125.184.0 255.255.255.192 10.125.179.5 
+ip route 10.125.182.64 255.255.255.192 10.125.179.5 
+ip route 10.125.178.0 255.255.255.0 10.125.179.5 
+ip route 10.125.184.64 255.255.255.192 10.125.179.5 
+ip route 10.125.181.192 255.255.255.192 10.125.179.5 
+!
+ip flow-export version 9
+!
+!
+!
+!
+!
+!
+!
+!
+line con 0
+!
+line aux 0
+!
+line vty 0 4
+ login
+!
+!
+!
+end
+

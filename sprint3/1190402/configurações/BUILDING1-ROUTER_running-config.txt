@@ -1,0 +1,161 @@
+!
+version 15.1
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+no service password-encryption
+!
+hostname Router
+!
+!
+!
+!
+ip dhcp excluded-address 10.125.177.161 10.125.177.166
+ip dhcp excluded-address 10.125.177.161
+!
+ip dhcp pool NET_B1_F1
+ network 10.125.177.64 255.255.255.192
+ default-router 10.125.177.126
+ dns-server 10.125.176.130
+ domain-name rcomp-20-21-dk-g1
+ip dhcp pool NET_B1_VOIP
+ network 10.125.177.160 255.255.255.224
+ default-router 10.125.177.190
+ option 150 ip 10.125.177.190
+ dns-server 10.125.176.130
+ domain-name rcomp-20-21-dk-g1
+ip dhcp pool NET_B1_WIFI
+ network 10.125.177.128 255.255.255.224
+ default-router 10.125.177.158
+ dns-server 10.125.176.130
+ domain-name rcomp-20-21-dk-g1
+ip dhcp pool NET_B1_F0
+ network 10.125.177.0 255.255.255.192
+ default-router 10.125.177.62
+ dns-server 10.125.176.130
+ domain-name rcomp-20-21-dk-g1
+!
+!
+!
+ip cef
+no ipv6 cef
+!
+!
+!
+!
+license udi pid CISCO2811/K9 sn FTX1017C2LO-
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+spanning-tree mode pvst
+!
+!
+!
+!
+!
+!
+interface FastEthernet0/0
+ ip address 10.125.176.1 255.255.255.128
+ duplex auto
+ speed auto
+!
+interface FastEthernet0/0.290
+ encapsulation dot1Q 290
+ ip address 10.125.177.62 255.255.255.192
+!
+interface FastEthernet0/0.291
+ encapsulation dot1Q 291
+ ip address 10.125.177.126 255.255.255.192
+!
+interface FastEthernet0/0.292
+ encapsulation dot1Q 292
+ ip address 10.125.176.254 255.255.255.128
+!
+interface FastEthernet0/0.293
+ encapsulation dot1Q 293
+ ip address 10.125.177.190 255.255.255.224
+!
+interface FastEthernet0/0.294
+ encapsulation dot1Q 294
+ ip address 10.125.177.158 255.255.255.224
+!
+interface FastEthernet0/0.315
+ encapsulation dot1Q 315
+ no ip address
+!
+interface FastEthernet0/1
+ ip address 120.57.101.234 255.255.255.252
+ duplex auto
+ speed auto
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+router ospf 1
+ log-adjacency-changes
+ network 10.125.176.0 0.0.1.255 area 1
+!
+router ospf 101
+ log-adjacency-changes
+ network 10.125.186.0 0.0.0.127 area 0
+ network 10.125.176.0 0.0.1.255 area 1
+!
+ip nat inside source static tcp 10.125.176.130 80 10.125.176.254 80 
+ip nat inside source static tcp 10.125.176.130 443 10.125.176.254 443 
+ip nat inside source static tcp 10.125.176.129 53 10.125.176.254 53 
+ip nat inside source static udp 10.125.176.129 53 10.125.176.254 53 
+ip classless
+ip route 0.0.0.0 0.0.0.0 120.57.101.233 
+!
+ip flow-export version 9
+!
+!
+!
+!
+!
+!
+!
+!
+telephony-service
+ max-ephones 2
+ max-dn 2
+ ip source-address 10.125.177.161 port 2000
+ auto assign 1 to 2
+!
+ephone-dn 1
+ number 10000
+!
+ephone-dn 2
+ number 10001
+!
+ephone 1
+ device-security-mode none
+ mac-address 0040.0BD4.6938
+ type 7960
+ button 1:1
+!
+ephone 2
+ device-security-mode none
+ mac-address 0007.EC92.78D7
+ type 7960
+ button 1:2
+!
+line con 0
+!
+line aux 0
+!
+line vty 0 4
+ login
+!
+!
+!
+end
+

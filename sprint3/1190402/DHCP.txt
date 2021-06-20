@@ -1,0 +1,30 @@
+
+router ospf 1
+network 10.125.176.0 0.0.1.255 area 1
+
+
+ip dhcp pool NET_B1_F0
+network 10.125.177.0 255.255.255.192
+default-router 10.125.177.62
+domain-name rcomp-20-21-dk-g1
+dns-server 10.125.176.130
+
+ip dhcp pool NET_B1_F1
+network 10.125.177.64 255.255.255.192
+default-router 10.125.177.126
+domain-name rcomp-20-21-dk-g1
+dns-server 10.125.176.130
+
+ip dhcp excluded-address 10.125.177.161
+ip dhcp pool NET_B1_VOIP
+network 10.125.177.160 255.255.255.224
+default-router 10.125.177.190
+option 150 ip 10.125.177.190
+domain-name rcomp-20-21-dk-g1
+dns-server 10.125.176.130
+
+ip dhcp pool NET_B1_WIFI
+network 10.125.177.128 255.255.255.224
+default-router 10.125.177.158
+domain-name rcomp-20-21-dk-g1
+dns-server 10.125.176.130

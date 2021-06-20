@@ -1,0 +1,91 @@
+##Config IC
+
+en
+config t
+vtp domain rcompdkg1
+ex
+show vtp status
+
+
+##Config de todos os switches cliente
+
+en
+config t
+vtp domain rcompdkg1
+vtp mode client
+ex
+show vtp status
+
+
+### VLANs
+ex
+vlan database
+vlan 290 name B1F0
+vlan 291 name B1F1
+vlan 292 name B1DMZ
+vlan 293 name B1VoIP
+vlan 294 name B1WIFI
+vlan 295 name B2F0
+vlan 296 name B2F1
+vlan 297 name B2DMZ
+vlan 298 name B2VoIP
+vlan 299 name B2WIFI
+vlan 300 name B3F0
+vlan 301 name B3F1
+vlan 302 name B3DMZ
+vlan 303 name B3VoIP
+vlan 304 name B3WIFI
+vlan 305 name B4F0
+vlan 306 name B4F1
+vlan 307 name B4DMZ
+vlan 308 name B4VoIP
+vlan 309 name B4WIFI
+vlan 310 name B5F0
+vlan 311 name B5F1
+vlan 312 name B5DMZ
+vlan 313 name B5VoIP
+vlan 314 name B5WIFI
+vlan 315 name BackBone
+
+Conversar em #resumos
+
+
+## Router
+
+###VLAN / ROUTING
+
+####BUILDING 5 ROUTER CONFIGURATION
+
+en
+config t
+interface vlan 310
+ip address 10.125.184.0 255.255.255.192
+interface vlan 311
+ip address 10.125.182.64 255.255.255.192
+interface vlan 312
+ip address 10.125.178.0 255.255.255.0
+interface vlan 313
+ip address 10.125.184.64 255.255.255.192
+interface vlan 314
+ip address 10.125.181.192 255.255.255.192
+ex
+interface FastEthernet 0/0.310
+encapsulation dot1Q 310
+ip address 10.125.184.62 255.255.255.192
+no shutdown
+interface FastEthernet 0/0.311
+encapsulation dot1Q 311
+ip address 10.125.182.126 255.255.255.192
+no shutdown
+interface FastEthernet 0/0.312
+encapsulation dot1Q 312
+ip address 10.125.178.254 255.255.255.0
+no shutdown
+interface FastEthernet 0/0.313
+encapsulation dot1Q 313
+ip address 10.125.184.126 255.255.255.192
+no shutdown
+interface FastEthernet 0/0.314
+encapsulation dot1Q 314
+ip address 10.125.181.254 255.255.255.192
+no shutdown

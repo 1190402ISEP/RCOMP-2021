@@ -1,0 +1,35 @@
+en
+config t
+interface vlan 295
+ip address 10.125.179.0 255.255.255.192
+interface vlan 296
+ip address 10.125.178.128 255.255.255.128
+interface vlan 297
+ip address 10.125.179.128 255.255.255.240
+interface vlan 298
+ip address 10.125.179.64 255.255.255.192
+interface vlan 299
+ip address 10.125.178.0 255.255.255.128
+
+
+ex
+interface FastEthernet 0/0.295
+encapsulation dot1Q 295
+ip address 10.125.179.62 255.255.255.192
+no shutdown
+interface FastEthernet 0/0.296
+encapsulation dot1Q 296
+ip address 10.125.178.254 255.255.255.128
+no shutdown
+interface FastEthernet 0/0.297
+encapsulation dot1Q 297
+ip address 10.125.179.142 255.255.255.240
+no shutdown
+interface FastEthernet 0/0.298
+encapsulation dot1Q 298
+ip address 10.125.179.126 255.255.255.192
+no shutdown
+interface FastEthernet 0/0.299
+encapsulation dot1Q 299
+ip address 10.125.178.126 255.255.255.128
+no shutdown

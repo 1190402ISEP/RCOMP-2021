@@ -1,0 +1,174 @@
+!
+version 15.1
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+no service password-encryption
+!
+hostname Router
+!
+!
+!
+!
+ip dhcp excluded-address 10.125.181.254
+!
+ip dhcp pool NET_B3_VOIP
+ network 10.125.181.192 255.255.255.192
+ default-router 10.125.181.254
+ option 150 ip 10.125.181.254
+ip dhcp pool NET_B3_F0
+ network 10.125.181.128 255.255.255.192
+ default-router 10.125.181.190
+ dns-server 10.125.180.1
+ domain-name building-3.rcomp-20-21-dk-g1
+ip dhcp pool NET_B3_F1
+ network 10.125.181.64 255.255.255.192
+ default-router 10.125.181.126
+ dns-server 10.125.180.1
+ domain-name building-3.rcomp-20-21-dk-g1
+ip dhcp pool NET_B3_WIFI
+ network 10.125.181.0 255.255.255.192
+ default-router 10.125.181.62
+ dns-server 10.125.180.1
+ domain-name building-3.rcomp-20-21-dk-g1
+!
+!
+!
+ip cef
+no ipv6 cef
+!
+!
+!
+!
+license udi pid CISCO2811/K9 sn FTX1017YS63-
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+spanning-tree mode pvst
+!
+!
+!
+!
+!
+!
+interface FastEthernet0/0
+ ip address 10.125.186.3 255.255.255.128
+ duplex auto
+ speed auto
+!
+interface FastEthernet0/0.300
+ encapsulation dot1Q 300
+ ip address 10.125.181.190 255.255.255.192
+!
+interface FastEthernet0/0.301
+ encapsulation dot1Q 301
+ ip address 10.125.181.126 255.255.255.192
+!
+interface FastEthernet0/0.302
+ encapsulation dot1Q 302
+ ip address 10.125.180.254 255.255.255.0
+!
+interface FastEthernet0/0.303
+ encapsulation dot1Q 303
+ ip address 10.125.181.254 255.255.255.192
+!
+interface FastEthernet0/0.304
+ encapsulation dot1Q 304
+ ip address 10.125.181.62 255.255.255.192
+!
+interface FastEthernet0/1
+ no ip address
+ duplex auto
+ speed auto
+ shutdown
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+interface Vlan300
+ mac-address 000d.bd95.9201
+ no ip address
+!
+interface Vlan301
+ mac-address 000d.bd95.9202
+ no ip address
+!
+interface Vlan302
+ mac-address 000d.bd95.9203
+ no ip address
+!
+interface Vlan303
+ mac-address 000d.bd95.9204
+ no ip address
+!
+interface Vlan304
+ mac-address 000d.bd95.9205
+ no ip address
+!
+ip nat inside source static tcp 10.125.180.2 80 10.125.180.254 80 
+ip nat inside source static tcp 10.125.180.2 443 10.125.180.254 443 
+ip nat inside source static tcp 10.125.180.1 53 10.125.180.254 53 
+ip nat inside source static udp 10.125.180.1 53 10.125.180.254 53 
+ip classless
+!
+ip flow-export version 9
+!
+!
+!
+!
+!
+!
+!
+!
+telephony-service
+ max-ephones 5
+ max-dn 5
+ ip source-address 10.125.181.254 port 2000
+ auto assign 1 to 5
+!
+ephone-dn 1
+ number 3000
+!
+ephone-dn 2
+ number 3001
+!
+ephone-dn 3
+ number 3002
+!
+ephone-dn 4
+ number 3003
+!
+ephone-dn 5
+ number 3004
+!
+ephone 1
+ device-security-mode none
+ mac-address 0001.9665.9E68
+ type 7960
+ button 1:1
+!
+ephone 2
+ device-security-mode none
+ mac-address 0006.2AB9.B4B8
+ type 7960
+ button 1:2
+!
+line con 0
+!
+line aux 0
+!
+line vty 0 4
+ login
+!
+!
+!
+end
+
